@@ -61,3 +61,29 @@ $$
                     ith = j
             a[i], a[ith] = a[ith], a[i]
     ```
+    
+=== "Java"
+
+    ```java
+    public void execute(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            int candidate = i;
+            for (int j = i + 1; j < array.length; j++) {
+                // find the index of the smallest element in the range of [i + 1, array.length)
+                if (array[j] < array[candidate]) {
+                    candidate = j;
+                }
+            }
+
+             /**
+              * we have two cases:
+              * case 1: the ith element is the smallest element in the subarray(index in the range of
+              *     [i, array.length)), then we won't change candidate.
+              * case 2: the ith element is NOT the smallest element in the subarray(index in the range of
+              *     [i, array.length)), then we will find the smallest element in the range of [i + 1, array.length),
+              *     we save it in the candidate and swap it.
+              */
+            swap(array, i, candidate);
+        }
+    }
+    ```
