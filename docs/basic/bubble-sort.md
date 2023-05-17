@@ -75,3 +75,35 @@ $$
                     flag = True
                     a[i], a[i + 1] = a[i + 1], a[i]
     ```
+=== "Java"
+
+    ```java
+    public void execute(int[] array) {
+        // assume the array is not fully sorted.
+        boolean unordered = true;
+        // repeat scan the whole array until all subarrays consisted of two adjacent elements are in order(stopping condition)
+        while (unordered) {
+            // check if exist any two adjacent elements are NOT in order.
+            // How we do it? 
+            // set unordered to false in each scan initially and change it to true if any two adjacent elements
+            // are NOT in order.
+            unordered = false;
+
+            // repeat swap adjacent elements if they are NOT in order.
+            for (int i = 0; i < array.length - 1; i++) {
+                if (array[i] > array[i + 1]) {
+                    // indicate two elements are not in order
+                    unordered = true;
+                    // they are in order after swapped them
+                    swap(array, i, i + 1);
+                }
+            }
+        }
+    }
+
+    private void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    ```
